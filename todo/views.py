@@ -10,6 +10,13 @@ def get_todo_list(request):   # Query the database to retrieve all items
                         # as items variable
 
     }
-    return render(request, 'todo/todo_list.html', context) 
     # Render the template with context dictionary and
     # return the HttpResponse object
+    return render(request, 'todo/todo_list.html', context)
+
+
+def add_item(request):
+    """
+    Renders the 'add_item.html' template when the add_item view is requested.
+    """
+    return render(request, 'todo/add_item.html')
