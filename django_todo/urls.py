@@ -19,5 +19,6 @@ from todo.views import get_todo_list
 
 # Define URL patterns for the todo app
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', get_todo_list, name='get_todo_list')
 ]
