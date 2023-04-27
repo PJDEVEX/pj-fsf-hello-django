@@ -15,6 +15,11 @@
         a POST request to the "add" URL. 
     -->
     <form method="POST" , action="add">
+        <!-- This is a Django template tag for generating a CSRF token. -->
+        <!-- It adds a unique and random token to a hidden form field, 
+            which is used to verify that the form submission was made by 
+            the same user and prevents cross-site request forgery attacks. -->
+        {% csrf_token %}
         <div>
             <p>
                 <label for="id_name">Name</label>
