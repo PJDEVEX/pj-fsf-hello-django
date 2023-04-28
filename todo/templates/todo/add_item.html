@@ -20,23 +20,12 @@
             which is used to verify that the form submission was made by 
             the same user and prevents cross-site request forgery attacks. -->
         {% csrf_token %}
-        <div>
-            <p>
-                <label for="id_name">Name</label>
-                <input type="text" id="id_name" name="item_name" />
-            </p>
-        </div>
-        <div>
-            <p>
-                <label for="id_done">Done: </label>
-                <input type="checkbox" id="id_done" name="done" />
-            </p>
-        </div>
+        <!-- Adding form template variable -->
+        {{ form }}
         <div>
             <p>
                 <button type="submit">Add Item</button>
             </p>
-
         </div>
     </form>
 </body>
