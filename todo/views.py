@@ -9,7 +9,6 @@ def get_todo_list(request):   # Query the database to retrieve all items
     context = {
         'items': items  # Create a dictionary with 'items' key and value
                         # as items variable
-
     }
     # Render the template with context dictionary and
     # return the HttpResponse object
@@ -23,7 +22,7 @@ def add_item(request):
     and 'done' status and redirects to the 'get_todo_list' view.
     """
     if request.method == 'POST':  # Check if request method is POST
-        form = ItemForm(request.POST)
+        form = ItemForm(request.POST) 
         if form.is_valid():
             form.save()
             # Redirect to 'get_todo_list' view
