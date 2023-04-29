@@ -1,10 +1,14 @@
 from django.test import TestCase
+from .models import Item
 
 
-class TestDjango (TestCase):
+class TestModels (TestCase):
 
-    def test_this_thing_works(self):
+    def test_done_defaults_to_defaults(self):
         """
-        Ensure that this thing works correctly.
+        Test that a todo item is created with a default done status of False
         """
-        self.assertEqual(1, 1)
+        # Creating a new item      
+        item = Item.objects.create(name='Test Todo Item')
+        # Asserting that the done status of the item is False
+        self.assertFalse(item.done)
