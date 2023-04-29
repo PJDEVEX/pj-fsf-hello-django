@@ -22,7 +22,7 @@
         the same user and prevents cross-site request forgery attacks. -->
         {% csrf_token %}
         <!-- Adding form template variable -->
-        {{ form }}
+        {{ form.as_p }}
         <div>
             <p>
                 <button type="submit">Update Item</button>

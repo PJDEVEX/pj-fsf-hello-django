@@ -60,3 +60,34 @@ def edit_item(request, item_id):
     }
     # Render the 'edit_item.html' template with the context dictionary
     return render(request, 'todo/edit_item.html', context)
+
+
+def toggle_item(request, item_id):
+    """
+    Toggles the 'done' status of the item with the given id.
+    :param request: The HTTP request object.
+    :param item_id: The id of the item to be toggled.
+    :return: A redirect object to 'get_todo_list' view.
+    """
+    # Get the item with the given id
+    item = get_object_or_404(Item, id=item_id)
+    # Toggle the 'done' status of the item
+    item.done = not item.done
+    item.save()
+    # Redirect to the 'get_todo_list' view
+    return redirect('get_todo_list')
+
+
+def delete_item(request, item_id):
+    """
+    Deletes the item with the given id.
+    :param request: The HTTP request object.
+    :param item_id: The id of the item to be deleted.
+    :return: A redirect object to 'get_todo_list' view.
+    """
+    # Get the item with the given id
+    item = get_object_or_404(Item, id=item_id)
+    # Delete the item
+    item.delete()
+    # Redirect to the 'get_todo_list' view
+    return redirect('get_todo_list')
