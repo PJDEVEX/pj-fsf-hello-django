@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Item
 from .forms import ItemForm
 
@@ -33,3 +33,30 @@ def add_item(request):
     }
     # Render 'add_item.html' template for GET requests
     return render(request, 'todo/add_item.html', context)
+
+
+def edit_item(request, item_id):
+    """
+    Renders the 'edit_item.html' template to edit an item.
+    :param request: The HTTP request object.
+    :param item_id: The id of the item to be edited.
+:   return: A render object with the edit_item.html template
+    """
+    # Get the item with the given id
+    item = get_object_or_404(Item, id=item_id)
+    # Check if request method is POST
+    if request.method == 'POST': 
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            # Redirect to 'get_todo_list' view
+            return redirect('get_todo_list')
+    # If request method is not POST, create an instance of the ItemForm
+    # with the retrieved item instance
+    form = ItemForm(instance=item)
+    context = {
+        # Add the ItemForm instance to the context dictionary
+        'form': form
+    }
+    # Render the 'edit_item.html' template with the context dictionary
+    return render(request, 'todo/edit_item.html', context)

@@ -21,7 +21,7 @@
             the same user and prevents cross-site request forgery attacks. -->
         {% csrf_token %}
         <!-- Adding form template variable -->
-        {{ form.as_p }}
+        {{ form }}
         <div>
             <p>
                 <button type="submit">Add Item</button>
