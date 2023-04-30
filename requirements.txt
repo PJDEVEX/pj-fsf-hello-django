@@ -1,6 +1,9 @@
-asgiref==3.6.0
-Django==3.2.18
-gunicorn==20.1.0
-psycopg2-binary==2.9.6
-pytz==2023.3
-sqlparse==0.4.4
+# list of dependencies required for project to run on Heroku.
+# Each dependency is listed with its name, version number and 
+# a short comment describing its purpose.
+asgiref==3.6.0 # ASGI framework for Django.
+Django==3.2.18 # Python web framework for building web apps.
+gunicorn==20.1.0 # Python WSGI HTTP server used for deployment.
+psycopg2-binary==2.9.6 # PostgreSQL adapter for Python.
+pytz==2023.3 # Python library for timezone support.
+sqlparse==0.4.4 # Library for parsing SQL statements in Python.
