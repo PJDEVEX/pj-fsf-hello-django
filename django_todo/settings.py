@@ -19,6 +19,8 @@ if os.path.isfile("env.py"):
 # Get the value of DATABASE_URL environment variable
 os.environ.get("DATABASE_URL")
 
+# Set the value of the DEVELOPMENT environment variable 
+# to False if it is not already set
 development = os.environ.get('DEVELOPMENT', False)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,11 +31,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'Alpjg@143')
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = development
 
+# Set ALLOWED_HOSTS based on development or production environment
 if development:
     ALLOWED_HOSTS = ['localhost']
 else:
@@ -85,7 +88,9 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# Set the database configuration based on the environment
 if development:
+    # Use SQLite as the database engine in development environment
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -93,6 +98,8 @@ if development:
         }
     }
 else:
+    # Use the database URL defined in the environment variable 
+    # in production environment
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
