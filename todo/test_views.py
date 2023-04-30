@@ -73,3 +73,21 @@ class TestViews (TestCase):
         self.assertRedirects(response, '/')
         updated_item = Item.objects.get(id=item.id)
         self.assertFalse(updated_item.done)
+
+    def test_can_edit_item(self):
+        """
+        Test that an item can be edited
+        """
+        # Create a new item
+        item = Item.objects.create(name='Test Todo Item')
+        # Send a POST request to edit the item's name
+        response = self.client.post(
+            f'/edit/{item.id}', 
+            {'name': 'Updated Name'}
+            )
+        # Assert that the response is a redirect to the homepage
+        self.assertRedirects(response, '/')
+        # Get the updated item from the database
+        updated_item = Item.objects.get(id=item.id)
+        # Assert that the item's name has been updated
+        self.assertEqual(updated_item.name, 'Updated Name')
